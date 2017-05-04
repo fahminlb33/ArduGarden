@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!-- AboutView -->
+    <system:String x:Key="AppName">ArduGarden Monitor</system:String>
+    <system:String x:Key="AppTagline">ArduGarden smart garden automation tool monitor.</system:String>
+    <system:String x:Key="AboutDescription">ArduGarden is an open source garden automation toolkit. 
+ArduGarden is based on Arduino Uno R3 board with many sensors to track garden soil 
+moisture, temperature, and light intensity. Using those data, ArduGarden can store, 
+manage, and execute certain actions to automate garden watering system.</system:String>
+    <system:String x:Key="ResearchersText">Researchers</system:String>
+    <system:String x:Key="CreditsText">Credits</system:String>
+
+    <!-- GraphView -->
+    <system:String x:Key="FeedMenuText">_Feed</system:String>
+    <system:String x:Key="ConnectMenuText">Connect to ArduGarden...</system:String>
+    <system:String x:Key="DisconnectMenuText">Disconnect</system:String>
+    <system:String x:Key="ClearChartMenuText">Clear charts</system:String>
+    <system:String x:Key="LoadFileMenuText">Load file...</system:String>
+    <system:String x:Key="SaveFileMenuText">Save to file...</system:String>
+    
+    <system:String x:Key="ActionsMenuText">_Actions</system:String>
+    <system:String x:Key="ManualWateringMenuText">Manual watering</system:String>
+    <system:String x:Key="CalibrateClockMenuText">Calibrate clock</system:String>
+
+    <system:String x:Key="GraphSelectText">Select graph</system:String>
+    <system:String x:Key="GraphAllItem">All</system:String>
+    <system:String x:Key="GraphAirTempItem">Air temperature</system:String>
+    <system:String x:Key="GraphHumidityItem">Humidity</system:String>
+    <system:String x:Key="GraphDewPointItem">Dew point</system:String>
+    <system:String x:Key="GraphSoilMoistureItem">Soil moisture</system:String>
+    <system:String x:Key="GraphSoilTempItem">Soil temperature</system:String>
+    <system:String x:Key="GraphLightValueItem">Light intensity</system:String>
+    
+    <!-- ConfiguratorView -->
+    <system:String x:Key="OpenSdCardText">Open SD card</system:String>
+    <system:String x:Key="SaveSettingsText">Save settings</system:String>
+
+    <system:String x:Key="WateringSystemExpanderText">Watering System</system:String>
+    <system:String x:Key="WateringScheduleSectionText">Watering schedule</system:String>
+    <system:String x:Key="DayText">watering day:</system:String>
+    <system:String x:Key="SundayText">Sunday</system:String>
+    <system:String x:Key="MondayText">Monday</system:String>
+    <system:String x:Key="TuesdayText">Tuesday</system:String>
+    <system:String x:Key="WednesdayText">Wednesday</system:String>
+    <system:String x:Key="ThursdayText">Thursday</system:String>
+    <system:String x:Key="FridayText">Friday</system:String>
+    <system:String x:Key="SaturdayText">Saturday</system:String>
+    <system:String x:Key="TimeText">watering time every selected day:</system:String>
+    
+    <system:String x:Key="SoilMoistureSectionText">Moisture level</system:String>
+    <system:String x:Key="MoistureLevelText">moisture treshold:</system:String>
+    <system:String x:Key="ToText">to</system:String>
+    <system:String x:Key="LowerText">Lower</system:String>
+    <system:String x:Key="UpperText">Upper</system:String>
+    <system:String x:Key="MoistureRangeText">(range from 0-100, in percentage)</system:String>
+    <system:String x:Key="EnableEmergencyWateringCheckBoxText">Enable emergency watering</system:String>
+    <system:String x:Key="EnableScheduleIgnoreCheckBoxText">Enable schedule ignore</system:String>
+
+    <system:String x:Key="SystemAndSecurityExpanderText">System and Security</system:String>
+    <system:String x:Key="EraseDataText">Erase data</system:String>
+    <system:String x:Key="ResetSettingsText">Reset settings</system:String>
+    <system:String x:Key="FactoryResetText">Factory reset</system:String>
+    <system:String x:Key="EraseDataDescription">Erase recorded plant data on memory card. This will not reset current settings.</system:String>
+    <system:String x:Key="ResetSettingsDescription">Reset saved settings on ArduGarden host to default. This will not remove recorded data.</system:String>
+    <system:String x:Key="FactoryResetDescription">Resets ArduGarden settings and erase recorded data.</system:String>
+</ResourceDictionary>

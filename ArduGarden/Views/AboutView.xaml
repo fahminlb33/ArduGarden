@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="ArduGarden.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ArduGarden.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="476.652" d:DesignWidth="745.836">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="10,0,0,0">
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Image Stretch="Uniform" Width="200" Height="200" Source="/Resources/ardugarden_logo.png" />
+            <TextBlock Style="{StaticResource MaterialDesignDisplay3TextBlock}" 
+                           TextWrapping="Wrap" Margin="0" HorizontalAlignment="Center">
+                    <Run Text="{StaticResource AppName}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                           TextWrapping="Wrap" Margin="0" HorizontalAlignment="Center">
+                    <Run Text="{StaticResource AppTagline}" />
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap" Margin="0,20">
+                    <Run Text="{StaticResource AboutDescription}" />
+            </TextBlock>
+
+            <!-- Researchers -->
+            <Grid Margin="0,0,0,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap" Margin="0 0 0 10">
+                    <Run Text="{StaticResource ResearchersText}" />
+                </TextBlock>
+                <StackPanel Grid.Row="1">
+                    <WrapPanel Orientation="Horizontal">
+                        <materialDesign:Chip Content="Fahmi Noor Fiqri"
+                                         Icon="F" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        <materialDesign:Chip Content="Muhammad Ilham Akbar Undang"
+                                         Icon="I" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+                        <materialDesign:Chip Content="Khansa Rifa Zahiyah"
+                                         Icon="K" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Open Sources -->
+            <Grid Margin="0,0,0,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap" Margin="0 0 0 10">
+                    <Run Text="{StaticResource CreditsText}" />
+                </TextBlock>
+                <StackPanel Grid.Row="1">
+                    <WrapPanel Orientation="Horizontal">
+                        <materialDesign:Chip Content="CsvHelper - Josh Close"
+                                         Icon="C" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                        <materialDesign:Chip Content="LiveCharts - Beto Rodriguez"
+                                         Icon="L" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                        <materialDesign:Chip Content="MaterialDesignInXamlToolkit - James Willock"
+                                         Icon="M" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                        <materialDesign:Chip Content="Ookii.Dialogs - Sven Groot"
+                                         Icon="O" Margin="0 0 4 4"
+                                         IconBackground="{DynamicResource PrimaryHueLightBrush}"
+                                         IconForeground="{DynamicResource PrimaryHueLightForegroundBrush}" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+    

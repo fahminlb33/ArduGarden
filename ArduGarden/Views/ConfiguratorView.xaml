@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="ArduGarden.Views.ConfiguratorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="466.062" d:DesignWidth="562.086">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- header buttons -->
+        <Grid HorizontalAlignment="Left" Margin="10,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- load -->
+            <Button Grid.Column="0" Margin="0,0,5,0">
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="Sd" VerticalAlignment="Center"/>
+                    <TextBlock Text="{StaticResource OpenSdCardText}" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <!-- save -->
+            <Button Grid.Column="1">
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center"/>
+                    <TextBlock Text="{StaticResource SaveSettingsText}" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <!-- settings content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Orientation="Vertical">
+                <Expander Header="{StaticResource WateringSystemExpanderText}" VerticalAlignment="Stretch" IsExpanded="False">
+                    <Grid Margin="24,8,24,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- automatic watering -->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{StaticResource WateringScheduleSectionText}" VerticalAlignment="Top"/>
+                        <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,0,0,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
+                            <TextBlock Text="{StaticResource DayText}" VerticalAlignment="Center" Margin="0,0,0,5" />
+                            <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto">
+                                <CheckBox Content="{StaticResource SundayText}" Margin="0,0,5,5" />
+                                <CheckBox Content="{StaticResource MondayText}" Margin="0,0,5,5" />
+                                <CheckBox Content="{StaticResource TuesdayText}" Margin="0,0,5,5" />
+                                <CheckBox Content="{StaticResource WednesdayText}" Margin="0,0,5,5" />
+                                <CheckBox Content="{StaticResource ThursdayText}" Margin="0,0,5,5" />
+                                <CheckBox Content="{StaticResource FridayText}" Margin="0,0,5,5" />
+                                <CheckBox Content="{StaticResource SaturdayText}" Margin="0,0,5,5" />
+                            </WrapPanel>
+                            <TextBlock Text="{StaticResource TimeText}" VerticalAlignment="Center" Margin="0,10,0,5" />
+                            <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto">
+                                <materialDesign:TimePicker Width="100" HorizontalAlignment="Left" Margin="0,0,10,0" />
+                                <materialDesign:TimePicker Width="100" HorizontalAlignment="Left" Margin="0,0,10,0" />
+                                <materialDesign:TimePicker Width="100" HorizontalAlignment="Left" Margin="0,0,10,0" />
+                            </WrapPanel>
+                        </StackPanel>
+
+                        <!-- emergency watering -->
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{StaticResource SoilMoistureSectionText}" VerticalAlignment="Top"/>
+                        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical">
+                            <TextBlock Text="{StaticResource MoistureLevelText}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox materialDesign:HintAssist.Hint="{StaticResource LowerText}" Width="40" HorizontalAlignment="Left" TextAlignment="Center"/>
+                                <TextBlock Text="{StaticResource ToText}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                                <TextBox materialDesign:HintAssist.Hint="{StaticResource UpperText}" Width="40" HorizontalAlignment="Left" TextAlignment="Center"/>
+                                <TextBlock Text="{StaticResource MoistureRangeText}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <CheckBox Content="{StaticResource EnableEmergencyWateringCheckBoxText}" Margin="5,10,0,0" IsChecked="True" />
+                            <CheckBox Content="{StaticResource EnableScheduleIgnoreCheckBoxText}" Margin="5,0,0,0" IsChecked="True" />
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+                <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                <Expander Header="{StaticResource SystemAndSecurityExpanderText}" VerticalAlignment="Stretch" IsExpanded="False">
+                    <StackPanel Orientation="Horizontal" Margin="24,8,24,16">
+                        <Button Width="150" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" >
+                                <materialDesign:PackIcon Kind="Eraser" VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource EraseDataText}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Width="150" HorizontalAlignment="Left" Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal" >
+                                <materialDesign:PackIcon Kind="SettingsBox" VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource ResetSettingsText}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Width="150" HorizontalAlignment="Left" Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal" >
+                                <materialDesign:PackIcon Kind="BackupRestore" VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource FactoryResetText}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Expander>
+                <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
