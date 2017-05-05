@@ -1,4 +1,12 @@
-/*
+Modified files from DS18x20_Temperature are present under ArduGardenFirmware.
+The original license for OneWire is reproduced below.
+
+----------------------------------------------------------------------
+
+  Jim Studt's original library was modified by Josh Larios.
+
+  Tom Pollard, pollard@alum.mit.edu, contributed around May 20, 2008
+
   Permission is hereby granted, free of charge, to any person obtaining
   a copy of this software and associated documentation files (the
   "Software"), to deal in the Software without restriction, including
@@ -18,38 +26,6 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-  ----------------------------------------------------------------------
-  CHANGES:
-  04/05/2017   reduced code size
-               created new class ArduDS18B20
-*/
-
-#ifndef _ARDUDS18B20_h
-#define _ARDUDS18B20_h
-
-#if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
-#endif
-
-#ifndef OneWire_h
-	#include "OneWire.h"
-#endif // OneWire_h
-
-#define DS18B20_START 0x44
-#define DS18B20_READ_STRATCHPAD 0xBE
-
-class ArduDS18B20 {
-public:
-	ArduDS18B20();
-	void init(OneWire* wire);
-	float getTemperature();
-
-private:
-	uint8_t i;
-	uint8_t data[12];
-	uint8_t addr[8];
-	OneWire* _ds_wire;
-};
-
-#endif
-
+  Much of the code was inspired by Derek Yerger's code, though I don't
+  think much of that remains.  In any event that was..
+  (copyleft) 2006 by Derek Yerger - Free to distribute freely.

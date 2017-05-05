@@ -1,5 +1,9 @@
-/*
-  HW_AVR_defines.h - Arduino/chipKit library support for the DS3231 I2C Real-Time Clock
+Modified files from DS3231 are present under ArduGardenFirmware.
+The original license for DS3231 is reproduced below.
+
+----------------------------------------------------------------------
+
+  DS3231.cpp - Arduino/chipKit library support for the DS3231 I2C Real-Time Clock
   Copyright (C)2015 Rinky-Dink Electronics, Henning Karlsen. All right reserved
   
   This library has been made to easily interface and use the DS3231 RTC with
@@ -18,14 +22,3 @@
 
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
-
-  ----------------------------------------------------------------------
-  CHANGES:
-  04/05/2017   ORIGINAL VERSION
-*/
-
-#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
-
-#ifndef TWI_FREQ
-#define TWI_FREQ 400000L
-#endif

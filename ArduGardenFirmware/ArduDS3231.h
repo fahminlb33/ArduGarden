@@ -1,10 +1,39 @@
-// ArduDS3231.h
+/*
+  DS3231.cpp - Arduino/chipKit library support for the DS3231 I2C Real-Time Clock
+  Copyright (C)2015 Rinky-Dink Electronics, Henning Karlsen. All right reserved
+  
+  This library has been made to easily interface and use the DS3231 RTC with
+  an Arduino or chipKit.
+
+  You can find the latest version of the library at 
+  http://www.RinkyDinkElectronics.com/
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the CC BY-NC-SA 3.0 license.
+  Please see the included documents for further information.
+
+  Commercial use of this library requires you to buy a license that
+  will allow commercial use. This includes using the library,
+  modified or not, as a tool to sell products.
+
+  The license applies to all part of the library including the 
+  examples and tools supplied with the library.
+
+  ----------------------------------------------------------------------
+  CHANGES:
+  04/05/2017   reduced code size
+			   removed unused calculations
+			   removed unused to string converters
+			   removed hardware spesific functions
+			   create new class ArduDS3231
+*/
 
 #ifndef _ARDUDS3231_h
 #define _ARDUDS3231_h
 
 #if defined(__AVR__)
 #include "Arduino.h"
+#include "HW_AVR.h"
 #include "HW_AVR_defines.h"
 #endif
 
@@ -19,6 +48,14 @@
 #define FRIDAY		5
 #define SATURDAY	6
 #define SUNDAY		7
+
+#define REG_SEC		0x00
+#define REG_MIN		0x01
+#define REG_HOUR	0x02
+#define REG_DOW		0x03
+#define REG_DATE	0x04
+#define REG_MON		0x05
+#define REG_YEAR	0x06
 
 class DateTime
 {

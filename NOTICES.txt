@@ -1,0 +1,18 @@
+These are license informations for included libraries in ArduGarden project.
+
+	ArduDHT11.cpp and ArduHDT11.h is based on idDHTLib library.
+	project: idDHTLib
+	author: Nicholas (niesteszeck)
+	contributors: kcsoft, Dessimat0r, SpacePossum, sensestage (GitHub IDs)
+	web: https://github.com/niesteszeck/idDHTLib
+
+	ArduDS18B20.cpp and ArduDS18B20.h is based on DS18x20_Temperature example from OneWire library.
+	project: OneWire (DS18x20_Temperature example)
+	author: Jim Studt
+	contributors: Paul Stoffregen, Josh Larios, Tom Pollard
+	web: http://www.pjrc.com/teensy/td_libs_OneWire.html
+
+	ArduDS3231.cpp and ArduDS3231.h is based on DS3231 library.
+	project: DS3231
+	author: Rinky-Dink Electronics, Henning Karlsen
+	web: http://www.RinkyDinkElectronics.com/
