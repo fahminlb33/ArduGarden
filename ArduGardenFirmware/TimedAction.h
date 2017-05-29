@@ -1,5 +1,5 @@
 /*
-    ArduGardenFirmware.ino  is part of ArduGarden.
+    TimedAction.h is part of ArduGarden.
     Copyright (C) 2017  Fahmi Noor Fiqri
 
     This program is free software; you can redistribute it and/or
@@ -17,21 +17,33 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-void waterPumpOneCycle() {
-	// start pump
-	waterPumpStart();
+#ifndef _TIMEDACTION_h
+#define _TIMEDACTION_h
 
-	// wait
-	delay(WATER_PUMP_CYCLE_DURATION);
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
-	// stop pump
-	waterPumpStop();
-}
+class TimedAction {
 
-void waterPumpStart() {
-	omniWrite(MOTOR_START, ERROR_SUCCESS);
-}
+public:
+	TimedAction(unsigned long interval, void(*function)());
 
-void waterPumpStop() {
-	omniWrite(MOTOR_STOP, ERROR_SUCCESS);
-}
+	void setRunMode(bool loop);
+	void reset();
+	void check();
+	void setPrevious(unsigned long prev);
+
+private:
+	bool active;
+	bool loopMode;
+	unsigned long previous;
+	unsigned long interval;
+	void(*execute)();
+
+};
+
+#endif
+

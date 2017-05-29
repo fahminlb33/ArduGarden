@@ -1,5 +1,5 @@
 /*
-    ArduGardenFirmware.ino  is part of ArduGarden.
+    ArduGardenFirmware.ino is part of ArduGarden.
     Copyright (C) 2017  Fahmi Noor Fiqri
 
     This program is free software; you can redistribute it and/or
@@ -17,108 +17,68 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <SD.h>
+#include "TimedAction.h"
 #include <SoftwareSerial.h>
 #include "OneWire.h"
 #include "ArduDHT11.h"
-#include "ArduDS3231.h"
 #include "ArduDS18B20.h"
 
 #include "Definitions.h"
 
+// wrappers
+void dhtLib_callback();
+void dataSend_callback();
+
 // libraries
-OneWire _soil_temp_wire(10);
+TimedAction _dataTimer(DELAY_REQUEST, dataSend_callback);
+OneWire _soil_temp_wire(PIN_SOIL_TEMPERATURE);
 ArduDHT11 _dhtSensor;
-ArduDS3231 _rtc;
 ArduDS18B20 _soil_temp;
-SoftwareSerial _bluetoothSerial(PIN_RX_BLUETOOTH, PIN_TX_BLUETOOTH);
+SoftwareSerial _wifiSerial(PIN_WIFI_RECEIVE, PIN_WIFI_TRANSMIT);
 #define _usbSerial Serial
 
-// wrappers
-void dhtLib_wrapper();
+// vars
+float soilTemp, humid, moist, airTemp, light;
 
 // ===== PROGRAM ENTRY ==============================================
 void setup() {
-	// initialize modules
-	initializeSystem();
+	// begin serial communication
+	usbSerialInit();
+	wifiInit();
 
-	// read settings
-	initializeSettings();
+	// init sensors
+	_dhtSensor.init(PIN_DHT, DHT_INT_NUMBER, dhtLib_callback);
+	delay(DHT_INIT_TIME);
+	_soil_temp.init(&_soil_temp_wire);
 }
 
 void loop() {
-	// get command
-	String cmd = getSerialCommand();
+	// report from soil mositure sensor
+	soilTemp = toPercentage(analogRead(PIN_SOIL_MOISTURE));
+	usbSerialSend(SENSOR_SOIL_MOISTURE, soilTemp);
 
-	// step 1 - read sensors
-	readSensors();
+	// report from light intensity sensor
+	light = analogRead(PIN_LIGHT_INTENSITY);
+	usbSerialSend(SENSOR_LIGHT_INTENSITY, light);
 
-	// step 2 - check for watering schedule
-	// --- check soil moisture
-	checkSoilMoisture();
-	// --- check scheduled time
-	checkScheduledWatering();
+	/* acquire data */
+	_dhtSensor.acquireAndWait();
+	// report celcius from DHT
+	airTemp = _dhtSensor.getTemperature();
+	usbSerialSend(SENSOR_DHT_TEMPERATURE, airTemp);
 
-	// step 3 - parse command
+	// report RH from DHT
+	humid = _dhtSensor.getHumidity();
+	usbSerialSend(SENSOR_DHT_HUMIDITY, humid);
 
+	// report from soil temp sensor
+	soilTemp = _soil_temp.getTemperature();
+	usbSerialSend(SENSOR_SOIL_TEMP, soilTemp);
+
+	// send to server
+	_dataTimer.check();
+
+	// delay
+	delay(DELAY_CHECK);
 }
 
-void initializeSystem() {
-	// initialize system
-	int errorCount = 0;
-	int returnCode = ERROR_SUCCESS;
-
-	// reset
-	resetSystemVariables();
-
-	// begin serial communication
-	initUsbSerial();
-
-	// init bluetooth
-	returnCode = initBluetooth();
-	omniWrite(SYSTEM_BLUETOOTH_STATUS, returnCode);
-	if (returnCode != ERROR_SUCCESS) errorCount++;
-
-	// init dht
-	returnCode = initDHT();
-	omniWrite(SYSTEM_DHT_STATUS, returnCode);
-	if (returnCode != ERROR_SUCCESS) {
-		errorCount++;
-		DHT_SENSOR_AVAILIABLE = false;
-	}
-	else
-	{
-		DHT_SENSOR_AVAILIABLE = true;
-	}
-
-	// init soil temp
-	_soil_temp.init(&_soil_temp_wire);
-
-	// init SD
-	returnCode = initSD();
-	omniWrite(SYSTEM_SD_STATUS, returnCode);
-	if (returnCode != ERROR_SUCCESS) {
-		errorCount++;
-		SD_CARD_AVAILIABLE = false;
-	}
-	else
-	{
-		SD_CARD_AVAILIABLE = true;
-	}
-
-	// send system status
-	if (errorCount == 0) {
-		omniWrite(SYSTEM_STATUS, ERROR_SUCCESS);
-		SYSTEM_FAILING_STATE = false;
-	}
-	else if (errorCount == 3)
-	{
-		omniWrite(SYSTEM_STATUS, ERROR_FAILED);
-		SYSTEM_FAILING_STATE = true;
-	}
-	else
-	{
-		omniWrite(SYSTEM_STATUS, ERROR_PARTIAL);
-		SYSTEM_FAILING_STATE = false;
-	}
-}

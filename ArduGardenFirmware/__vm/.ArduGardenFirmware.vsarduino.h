@@ -13,7 +13,7 @@
 #define __AVR_ATmega328p__
 #define __AVR_ATmega328P__
 #define F_CPU 16000000L
-#define ARDUINO 106012
+#define ARDUINO 10802
 #define ARDUINO_AVR_UNO
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L
@@ -66,8 +66,7 @@ typedef void *__builtin_va_list;
 #undef PSTR
 #define PSTR(string_literal) ((const PROGMEM char *)(string_literal))
 #include "ArduGardenFirmware.ino"
-#include "DCMotor.ino"
-#include "InputOutput.ino"
-#include "Sensors.ino"
-#include "Settings.ino"
+#include "Modules.ino"
+#include "Serial.ino"
+#include "WiFi.ino"
 #endif

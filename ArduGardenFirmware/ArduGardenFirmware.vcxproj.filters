@@ -14,10 +14,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ArduGardenFirmware.ino" />
-    <None Include="DCMotor.ino" />
-    <None Include="InputOutput.ino" />
-    <None Include="Sensors.ino" />
-    <None Include="Settings.ino" />
+    <None Include="WiFi.ino" />
+    <None Include="Serial.ino" />
+    <None Include="Modules.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.ArduGardenFirmware.vsarduino.h">
@@ -35,14 +34,14 @@
     <ClInclude Include="ArduDS18B20.h">
       <Filter>Libraries</Filter>
     </ClInclude>
-    <ClInclude Include="ArduDS3231.h">
-      <Filter>Libraries</Filter>
-    </ClInclude>
     <ClInclude Include="OneWire.h">
       <Filter>Libraries</Filter>
     </ClInclude>
     <ClInclude Include="Definitions.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedAction.h">
+      <Filter>Libraries</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -52,10 +51,10 @@
     <ClCompile Include="ArduDS18B20.cpp">
       <Filter>Libraries</Filter>
     </ClCompile>
-    <ClCompile Include="ArduDS3231.cpp">
+    <ClCompile Include="OneWire.cpp">
       <Filter>Libraries</Filter>
     </ClCompile>
-    <ClCompile Include="OneWire.cpp">
+    <ClCompile Include="TimedAction.cpp">
       <Filter>Libraries</Filter>
     </ClCompile>
   </ItemGroup>
