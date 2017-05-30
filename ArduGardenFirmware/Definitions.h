@@ -41,7 +41,7 @@
 #define SERIAL_SPEED				9600
 #define SERIAL_DATA_DELIMITER		"|"
 // IoT api
-#define THINGSPEAK_API_KEY			"EDITME"
+#define THINGSPEAK_API_KEY			"M6S4VTLNJ6M2XE8K"
 #define THINGSPEAK_ENDPOINT			"184.106.153.149"
 
 /* Status codes */
