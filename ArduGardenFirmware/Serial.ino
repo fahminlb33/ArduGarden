@@ -22,8 +22,29 @@ void usbSerialInit() {
 }
 
 void usbSerialSend(uint8_t field, float value) {
-	String data = "u";
-	data.concat(field);
+	String data = "";
+	
+	switch (field)
+	{
+	case SENSOR_DHT_HUMIDITY:
+		data.concat("HUMIDITY");
+		break;
+	case SENSOR_DHT_TEMPERATURE:
+		data.concat("AIRTEMP");
+		break;
+	case SENSOR_SOIL_MOISTURE:
+		data.concat("SOILMOIST");
+		break;
+	case SENSOR_SOIL_TEMP:
+		data.concat("SOILTEMP");
+		break;
+	case SENSOR_LIGHT_INTENSITY:
+		data.concat("LIGHTLUX");
+		break;
+	default:
+		data.concat("UNKNOWN");
+		break;
+	}
 	data.concat(SERIAL_DATA_DELIMITER);
 	data.concat(value);
 

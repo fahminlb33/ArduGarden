@@ -18,7 +18,7 @@
 */
 
 float toPercentage(int value) {
-	return value / 1023 * 100;
+	return (float)value / 1023 * 100;
 }
 
 void dhtLib_callback() {

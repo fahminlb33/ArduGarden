@@ -31,7 +31,7 @@ void dataSend_callback();
 
 // libraries
 TimedAction _dataTimer(DELAY_REQUEST, dataSend_callback);
-OneWire _soil_temp_wire(PIN_SOIL_TEMPERATURE);
+OneWire _soil_temp_wire(10);
 ArduDHT11 _dhtSensor;
 ArduDS18B20 _soil_temp;
 SoftwareSerial _wifiSerial(PIN_WIFI_RECEIVE, PIN_WIFI_TRANSMIT);
@@ -54,12 +54,12 @@ void setup() {
 
 void loop() {
 	// report from soil mositure sensor
-	soilTemp = toPercentage(analogRead(PIN_SOIL_MOISTURE));
-	usbSerialSend(SENSOR_SOIL_MOISTURE, soilTemp);
+	moist = toPercentage(analogRead(PIN_SOIL_MOISTURE));
+	usbSerialSend(SENSOR_SOIL_MOISTURE, moist);
 
 	// report from light intensity sensor
-	light = analogRead(PIN_LIGHT_INTENSITY);
-	usbSerialSend(SENSOR_LIGHT_INTENSITY, light);
+	//light = toPercentage(analogRead(PIN_LIGHT_INTENSITY));
+	//usbSerialSend(SENSOR_LIGHT_INTENSITY, light);
 
 	/* acquire data */
 	_dhtSensor.acquireAndWait();
@@ -76,7 +76,7 @@ void loop() {
 	usbSerialSend(SENSOR_SOIL_TEMP, soilTemp);
 
 	// send to server
-	_dataTimer.check();
+	//_dataTimer.check();
 
 	// delay
 	delay(DELAY_CHECK);
